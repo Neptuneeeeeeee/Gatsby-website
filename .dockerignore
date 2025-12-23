@@ -1,0 +1,8 @@
+node_modules
+public
+.cache
+.git
+.github
+.DS_Store
+npm-debug.log
+yarn-error.log
