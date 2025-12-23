@@ -1,7 +1,19 @@
 FROM node:16-alpine AS build
 
 WORKDIR /app
-ENV NODE_ENV=production
+# Ensure native deps (mozjpeg) can build and devDeps are installed for Gatsby build.
+ENV NODE_ENV=development
+ENV YARN_PRODUCTION=false
+
+RUN apk add --no-cache \
+  autoconf \
+  automake \
+  g++ \
+  libtool \
+  make \
+  nasm \
+  pkgconfig \
+  python3
 
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
